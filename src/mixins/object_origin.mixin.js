@@ -104,8 +104,21 @@
      * @return {fabric.Point}
      */
     getCenterPoint: function() {
-      var leftTop = new fabric.Point(this.left, this.top);
-      return this.translateToCenterPoint(leftTop, this.originX, this.originY);
+      var pos = new fabric.Point(this.left, this.top);
+      var relCenter = this.translateToCenterPoint(pos, this.originX, this.originY);
+      return this.group ?
+        fabric.util.transformPoint(relCenter, this.group.calcTransformMatrix()) :
+        relCenter;
+    },
+
+    /**
+     * Returns the center coordinates of the object relative to it's parent
+     * @return {fabric.Point|null} point or null of object has no parent
+     */
+    getCenterPointRelativeToParent: function () {
+      return this.group ?
+        this.translateToCenterPoint(new fabric.Point(this.left, this.top), this.originX, this.originY) :
+        null;
     },
 
     /**
