@@ -9,14 +9,23 @@
    * @param {Object} destination Where to copy to
    * @param {Object} source Where to copy from
    * @param {Boolean} [deep] Whether to extend nested objects
+   * @param {Array} [visited] for internal use
    * @return {Object}
    */
-
-  function extend(destination, source, deep) {
+  function _extend(destination, source, deep, visited) {
     // JScript DontEnum bug is not taken care of
     // the deep clone is for internal use, is not meant to avoid
     // javascript traps or cloning html element or self referenced objects.
     if (deep) {
+      if (!visited) {
+        visited = [];
+      }
+      else if (visited.includes(source)) {
+        //  circular ref
+        destination = source;
+        return destination;
+      }
+      visited.push(source);
       if (!fabric.isLikelyNode && source instanceof Element) {
         // avoid cloning deep images, canvases,
         destination = source;
@@ -24,7 +33,7 @@
       else if (source instanceof Array) {
         destination = [];
         for (var i = 0, len = source.length; i < len; i++) {
-          destination[i] = extend({ }, source[i], deep);
+          destination[i] = _extend({}, source[i], deep, visited);
         }
       }
       else if (source && typeof source === 'object') {
@@ -35,7 +44,7 @@
             destination[property] = null;
           }
           else if (source.hasOwnProperty(property)) {
-            destination[property] = extend({ }, source[property], deep);
+            destination[property] = _extend({}, source[property], deep, visited);
           }
         }
       }
@@ -50,6 +59,22 @@
       }
     }
     return destination;
+  }
+
+  /**
+   * Copies all enumerable properties of one js object to another
+   * this does not and cannot compete with generic utils.
+   * Does not clone or extend fabric.Object subclasses.
+   * This is mostly for internal use and has extra handling for fabricJS objects
+   * it skips the canvas and group properties in deep cloning.
+   * @memberOf fabric.util.object
+   * @param {Object} destination Where to copy to
+   * @param {Object} source Where to copy from
+   * @param {Boolean} [deep] Whether to extend nested objects
+   * @return {Object}
+   */
+  function extend(destination, source, deep) {
+    return _extend(destination, source, deep);
   }
 
   /**
