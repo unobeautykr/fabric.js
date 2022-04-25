@@ -45,7 +45,7 @@
   "license": "MIT",
   "scripts": {
     "changelog": "auto-changelog -o change-output.md --unreleased-only",
-    "build": "node ./scripts build",
+    "build": "node build.js modules=ALL exclude=accessors requirejs minifier=uglifyjs",
     "build:fast": "npm run build -- --fast",
     "dev": "node ./scripts",
     "start": "node ./scripts start",
