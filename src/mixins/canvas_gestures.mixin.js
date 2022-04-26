@@ -21,7 +21,7 @@
      */
     __onTransformGesture: function(e, self) {
 
-      if (this.isDrawingMode || !e.touches || e.touches.length !== 2 || 'gesture' !== self.gesture) {
+      if (!e.touches || e.touches.length !== 2 || 'gesture' !== self.gesture) {
         return;
       }
 

@@ -440,6 +440,8 @@
         return;
       }
 
+      console.log(e);
+
       if (this.isDrawingMode && this._isCurrentlyDrawing) {
         this._onMouseUpInDrawingMode(e);
         return;
@@ -653,6 +655,8 @@
         return;
       }
 
+      console.log(e);
+
       if (this.isDrawingMode) {
         this._onMouseDownInDrawingMode(e);
         return;
@@ -763,6 +767,8 @@
       this._handleEvent(e, 'move:before');
       this._cacheTransformEventData(e);
       var target, pointer;
+
+      console.log(e);
 
       if (this.isDrawingMode) {
         this._onMouseMoveInDrawingMode(e);
