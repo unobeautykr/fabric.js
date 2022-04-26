@@ -15260,8 +15260,6 @@ fabric.PatternBrush = fabric.util.createClass(fabric.PencilBrush, /** @lends fab
         return;
       }
 
-      console.log('up', e);
-
       if (this.isDrawingMode && this._isCurrentlyDrawing) {
         this._onMouseUpInDrawingMode(e);
         return;
@@ -15480,12 +15478,9 @@ fabric.PatternBrush = fabric.util.createClass(fabric.PencilBrush, /** @lends fab
         return;
       }
 
-      console.log('start', e.type, e.touches.length);
-
       if (this.isDrawingMode) {
         if (e.type === 'touchstart' && e.touches.length > 1)  {
           if (this._isCurrentlyDrawing) {
-            console.log('finish drawing');
             this._finishDrawing(e);
           }
 
@@ -15602,8 +15597,6 @@ fabric.PatternBrush = fabric.util.createClass(fabric.PencilBrush, /** @lends fab
       this._handleEvent(e, 'move:before');
       this._cacheTransformEventData(e);
       var target, pointer;
-
-      console.log('move', e);
 
       if (this.isDrawingMode) {
         // if (e.type === 'touchmove' && e.touches.length > 1)  {
