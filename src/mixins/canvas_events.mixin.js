@@ -664,7 +664,10 @@
 
       if (this.isDrawingMode) {
         if (e.type === 'touchstart' && e.touches.length > 1)  {
-          this._finishDrawing(e);
+          if (this._isCurrentlyDrawing) {
+            this._finishDrawing(e);
+          }
+
           this._handleEvent(e, 'down');
           return;
         }
