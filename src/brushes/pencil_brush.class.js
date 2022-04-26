@@ -285,6 +285,11 @@
     _finalizeAndAddPath: function() {
       var ctx = this.canvas.contextTop;
       ctx.closePath();
+
+      if (this._points.length === 0) {
+        return;
+      }
+
       if (this.decimate) {
         this._points = this.decimatePoints(this._points, this.decimate);
       }
