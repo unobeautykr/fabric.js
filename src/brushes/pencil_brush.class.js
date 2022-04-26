@@ -286,7 +286,7 @@
       var ctx = this.canvas.contextTop;
       ctx.closePath();
 
-      if (this._points.length === 0) {
+      if (this._points.length < 2) {
         return;
       }
 
