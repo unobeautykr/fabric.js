@@ -15251,6 +15251,8 @@ fabric.PatternBrush = fabric.util.createClass(fabric.PencilBrush, /** @lends fab
         return;
       }
 
+      console.log(e);
+
       if (this.isDrawingMode && this._isCurrentlyDrawing) {
         this._onMouseUpInDrawingMode(e);
         return;
@@ -15464,6 +15466,8 @@ fabric.PatternBrush = fabric.util.createClass(fabric.PencilBrush, /** @lends fab
         return;
       }
 
+      console.log(e);
+
       if (this.isDrawingMode) {
         this._onMouseDownInDrawingMode(e);
         return;
@@ -15574,6 +15578,8 @@ fabric.PatternBrush = fabric.util.createClass(fabric.PencilBrush, /** @lends fab
       this._handleEvent(e, 'move:before');
       this._cacheTransformEventData(e);
       var target, pointer;
+
+      console.log(e);
 
       if (this.isDrawingMode) {
         this._onMouseMoveInDrawingMode(e);
@@ -16324,7 +16330,7 @@ fabric.util.object.extend(fabric.StaticCanvas.prototype, /** @lends fabric.Stati
      */
     __onTransformGesture: function(e, self) {
 
-      if (this.isDrawingMode || !e.touches || e.touches.length !== 2 || 'gesture' !== self.gesture) {
+      if (!e.touches || e.touches.length !== 2 || 'gesture' !== self.gesture) {
         return;
       }
 
