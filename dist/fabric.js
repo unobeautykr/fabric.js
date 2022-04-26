@@ -12820,7 +12820,7 @@ fabric.BaseBrush = fabric.util.createClass(/** @lends fabric.BaseBrush.prototype
       this._prepareForDrawing(pointer);
       // capture coordinates immediately
       // this allows to draw dots (when movement never occurs)
-      this._captureDrawingPath(pointer);
+      // this._captureDrawingPath(pointer);
       this._render();
     },
 
@@ -15251,7 +15251,7 @@ fabric.PatternBrush = fabric.util.createClass(fabric.PencilBrush, /** @lends fab
         return;
       }
 
-      console.log(e);
+      console.log('up', e);
 
       if (this.isDrawingMode && this._isCurrentlyDrawing) {
         this._onMouseUpInDrawingMode(e);
@@ -15439,6 +15439,11 @@ fabric.PatternBrush = fabric.util.createClass(fabric.PencilBrush, /** @lends fab
       this._handleEvent(e, 'up');
     },
 
+    _finishDrawing: function (e) {
+      var pointer = this.getPointer(e);
+      this._isCurrentlyDrawing = this.freeDrawingBrush.onMouseUp({ e: e, pointer: pointer });
+    },
+
     /**
      * Method that defines the actions when mouse is clicked on canvas.
      * The method inits the currentTransform parameters and renders all the
@@ -15469,6 +15474,12 @@ fabric.PatternBrush = fabric.util.createClass(fabric.PencilBrush, /** @lends fab
       console.log(e);
 
       if (this.isDrawingMode) {
+        if (e.type === 'touchstart' && e.touches.length > 1)  {
+          this._finishDrawing(e);
+          this._handleEvent(e, 'down');
+          return;
+        }
+
         this._onMouseDownInDrawingMode(e);
         return;
       }
@@ -15579,9 +15590,14 @@ fabric.PatternBrush = fabric.util.createClass(fabric.PencilBrush, /** @lends fab
       this._cacheTransformEventData(e);
       var target, pointer;
 
-      console.log(e);
+      console.log('move', e);
 
       if (this.isDrawingMode) {
+        // if (e.type === 'touchmove' && e.touches.length > 1)  {
+        //   this._finishDrawing(e);
+        //   this._handleEvent(e, 'down');
+        //   return;
+        // }
         this._onMouseMoveInDrawingMode(e);
         return;
       }

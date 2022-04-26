@@ -65,7 +65,7 @@
       this._prepareForDrawing(pointer);
       // capture coordinates immediately
       // this allows to draw dots (when movement never occurs)
-      this._captureDrawingPath(pointer);
+      // this._captureDrawingPath(pointer);
       this._render();
     },
 
