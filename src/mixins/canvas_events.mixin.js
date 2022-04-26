@@ -631,6 +631,7 @@
     _finishDrawing: function (e) {
       var pointer = this.getPointer(e);
       this._isCurrentlyDrawing = this.freeDrawingBrush.onMouseUp({ e: e, pointer: pointer });
+      console.log(this._isCurrentlyDrawing);
     },
 
     /**
@@ -665,6 +666,7 @@
       if (this.isDrawingMode) {
         if (e.type === 'touchstart' && e.touches.length > 1)  {
           if (this._isCurrentlyDrawing) {
+            console.log('finish drawing');
             this._finishDrawing(e);
           }
 
