@@ -660,7 +660,7 @@
         return;
       }
 
-      console.log(e);
+      console.log('start', e.type, e.touches.length);
 
       if (this.isDrawingMode) {
         if (e.type === 'touchstart' && e.touches.length > 1)  {
