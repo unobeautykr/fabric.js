@@ -110,10 +110,14 @@
       if (!this.canvas._isMainEvent(options.e)) {
         return true;
       }
+      this.finish();
+      return false;
+    },
+
+    finish: function() {
       this.drawStraightLine = false;
       this.oldEnd = undefined;
       this._finalizeAndAddPath();
-      return false;
     },
 
     /**

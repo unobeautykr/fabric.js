@@ -12865,10 +12865,14 @@ fabric.BaseBrush = fabric.util.createClass(/** @lends fabric.BaseBrush.prototype
       if (!this.canvas._isMainEvent(options.e)) {
         return true;
       }
+      this.finish();
+      return false;
+    },
+
+    finish: function() {
       this.drawStraightLine = false;
       this.oldEnd = undefined;
       this._finalizeAndAddPath();
-      return false;
     },
 
     /**
@@ -15439,10 +15443,9 @@ fabric.PatternBrush = fabric.util.createClass(fabric.PencilBrush, /** @lends fab
       this._handleEvent(e, 'up');
     },
 
-    _finishDrawing: function (e) {
-      var pointer = this.getPointer(e);
-      this._isCurrentlyDrawing = this.freeDrawingBrush.onMouseUp({ e: e, pointer: pointer });
-      console.log(this._isCurrentlyDrawing);
+    _finishDrawing: function () {
+      this.freeDrawingBrush.finish();
+      this._isCurrentlyDrawing = false;
     },
 
     /**

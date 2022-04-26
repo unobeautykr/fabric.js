@@ -628,10 +628,9 @@
       this._handleEvent(e, 'up');
     },
 
-    _finishDrawing: function (e) {
-      var pointer = this.getPointer(e);
-      this._isCurrentlyDrawing = this.freeDrawingBrush.onMouseUp({ e: e, pointer: pointer });
-      console.log(this._isCurrentlyDrawing);
+    _finishDrawing: function () {
+      this.freeDrawingBrush.finish();
+      this._isCurrentlyDrawing = false;
     },
 
     /**
