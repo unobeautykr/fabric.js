@@ -15471,11 +15471,14 @@ fabric.PatternBrush = fabric.util.createClass(fabric.PencilBrush, /** @lends fab
         return;
       }
 
-      console.log(e);
+      console.log('start', e.type, e.touches.length);
 
       if (this.isDrawingMode) {
         if (e.type === 'touchstart' && e.touches.length > 1)  {
-          this._finishDrawing(e);
+          if (this._isCurrentlyDrawing) {
+            this._finishDrawing(e);
+          }
+
           this._handleEvent(e, 'down');
           return;
         }
