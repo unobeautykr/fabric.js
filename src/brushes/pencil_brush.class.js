@@ -291,6 +291,7 @@
         console.log(this._points.length);
         this.canvas.clearContext(this.canvas.contextTop);
         this.canvas.requestRenderAll();
+        this._resetShadow();
         return;
       }
 
