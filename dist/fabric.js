@@ -13046,6 +13046,7 @@ fabric.BaseBrush = fabric.util.createClass(/** @lends fabric.BaseBrush.prototype
         console.log(this._points.length);
         this.canvas.clearContext(this.canvas.contextTop);
         this.canvas.requestRenderAll();
+        this._resetShadow();
         return;
       }
 
