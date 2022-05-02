@@ -89,6 +89,7 @@
           this._render();
         }
         else {
+          console.log(length, this._points);
           var points = this._points, length = points.length, ctx = this.canvas.contextTop;
           // draw the curve update
           this._saveAndTransform(ctx);
@@ -97,7 +98,7 @@
             ctx.moveTo(this.oldEnd.x, this.oldEnd.y);
           }
           this.oldEnd = this._drawSegment(ctx, points[length - 2], points[length - 1], true);
-          // ctx.stroke();
+          ctx.stroke();
           ctx.restore();
         }
       }
