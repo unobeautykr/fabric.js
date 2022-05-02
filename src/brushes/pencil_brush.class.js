@@ -285,6 +285,7 @@
     _finalizeAndAddPath: function() {
       var ctx = this.canvas.contextTop;
       ctx.closePath();
+      console.log('finalize');
 
       if (this._points.length < 2) {
         console.log(this._points.length);

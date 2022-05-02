@@ -13040,6 +13040,7 @@ fabric.BaseBrush = fabric.util.createClass(/** @lends fabric.BaseBrush.prototype
     _finalizeAndAddPath: function() {
       var ctx = this.canvas.contextTop;
       ctx.closePath();
+      console.log('finalize');
 
       if (this._points.length < 2) {
         console.log(this._points.length);
