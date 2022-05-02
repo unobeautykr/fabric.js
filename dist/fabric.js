@@ -12821,7 +12821,7 @@ fabric.BaseBrush = fabric.util.createClass(/** @lends fabric.BaseBrush.prototype
       // capture coordinates immediately
       // this allows to draw dots (when movement never occurs)
       // this._captureDrawingPath(pointer);
-      this._render();
+      // this._render();
     },
 
     /**
@@ -13042,6 +13042,7 @@ fabric.BaseBrush = fabric.util.createClass(/** @lends fabric.BaseBrush.prototype
       ctx.closePath();
 
       if (this._points.length < 2) {
+        this.canvas.requestRenderAll();
         return;
       }
 
