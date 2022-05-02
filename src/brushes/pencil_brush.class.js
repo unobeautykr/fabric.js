@@ -287,6 +287,8 @@
       ctx.closePath();
 
       if (this._points.length < 2) {
+        console.log(this._points.length);
+        this.canvas.clearContext(this.canvas.contextTop);
         this.canvas.requestRenderAll();
         return;
       }
