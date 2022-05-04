@@ -1,4 +1,4 @@
-console.log("version3");
+console.log("version4");
 (function() {
 
   var addListener = fabric.util.addListener,
@@ -662,17 +662,22 @@ console.log("version3");
       console.log(this.isDrawingMode, this.usePencil, e);
 
       if (this.isDrawingMode) {
-        if (e.type === 'touchstart' && e.touches.length > 1)  {
-          if (this._isCurrentlyDrawing) {
-            this._finishDrawing(e);
+        if (!this.usePencil || this._isStylus()) {
+          if (e.type === 'touchstart' && e.touches.length > 1)  {
+            if (this._isCurrentlyDrawing) {
+              this._finishDrawing(e);
+            }
+
+            this._handleEvent(e, 'down');
+            return;
           }
 
-          this._handleEvent(e, 'down');
+          this._onMouseDownInDrawingMode(e);
           return;
+        } else {
+            this._handleEvent(e, 'down');
+            return;
         }
-
-        this._onMouseDownInDrawingMode(e);
-        return;
       }
 
       if (!this._isMainEvent(e)) {
@@ -767,6 +772,19 @@ console.log("version3");
       });
     },
 
+    _isStylus: function(e) {
+      for (var touch in e.changedTouches) {
+        if (touch.touchType && touch.touchType === stylus) {
+          return true;
+        }
+
+        //fallback to check radius
+        if (touch.radiusX === 0) return true;
+      }
+
+      return false;
+    },
+
     /**
      * Method that defines the actions when mouse is hovering the canvas.
      * The currentTransform parameter will define whether the user is rotating/scaling/translating
@@ -783,13 +801,18 @@ console.log("version3");
 
       console.log(this.isDrawingMode, this.usePencil, e);
       if (this.isDrawingMode) {
-        // if (e.type === 'touchmove' && e.touches.length > 1)  {
-        //   this._finishDrawing(e);
-        //   this._handleEvent(e, 'down');
-        //   return;
-        // }
-        this._onMouseMoveInDrawingMode(e);
-        return;
+        if (!this.usePencil || this._isStylus(e)) {
+          // if (e.type === 'touchmove' && e.touches.length > 1)  {
+          //   this._finishDrawing(e);
+          //   this._handleEvent(e, 'down');
+          //   return;
+          // }
+          this._onMouseMoveInDrawingMode(e);
+          return;
+        }
+        else {
+          return;
+        }
       }
 
       if (!this._isMainEvent(e)) {
