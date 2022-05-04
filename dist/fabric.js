@@ -15487,6 +15487,10 @@ fabric.PatternBrush = fabric.util.createClass(fabric.PencilBrush, /** @lends fab
             this._finishDrawing(e);
           }
 
+          if (this.usePencil) {
+            console.log(e);
+          }
+
           this._handleEvent(e, 'down');
           return;
         }

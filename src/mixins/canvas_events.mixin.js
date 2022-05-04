@@ -664,6 +664,10 @@
             this._finishDrawing(e);
           }
 
+          if (this.usePencil) {
+            console.log(e);
+          }
+
           this._handleEvent(e, 'down');
           return;
         }
