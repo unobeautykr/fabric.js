@@ -14821,6 +14821,7 @@ fabric.PatternBrush = fabric.util.createClass(fabric.PencilBrush, /** @lends fab
 })();
 
 
+console.log("version1");
 (function() {
 
   var addListener = fabric.util.addListener,
