@@ -14821,7 +14821,7 @@ fabric.PatternBrush = fabric.util.createClass(fabric.PencilBrush, /** @lends fab
 })();
 
 
-console.log("version4");
+console.log("version5");
 (function() {
 
   var addListener = fabric.util.addListener,
@@ -15485,7 +15485,7 @@ console.log("version4");
       console.log(this.isDrawingMode, this.usePencil, e);
 
       if (this.isDrawingMode) {
-        if (!this.usePencil || this._isStylus()) {
+        if (!this.usePencil || this._isStylus(e)) {
           if (e.type === 'touchstart' && e.touches.length > 1)  {
             if (this._isCurrentlyDrawing) {
               this._finishDrawing(e);
