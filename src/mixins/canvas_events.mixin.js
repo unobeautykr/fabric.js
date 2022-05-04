@@ -1,3 +1,4 @@
+console.log("version1");
 (function() {
 
   var addListener = fabric.util.addListener,
