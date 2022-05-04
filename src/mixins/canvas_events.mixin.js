@@ -1,4 +1,4 @@
-console.log("version1");
+console.log("version2");
 (function() {
 
   var addListener = fabric.util.addListener,
@@ -658,6 +658,8 @@ console.log("version1");
         }
         return;
       }
+
+      console.log(this.isDrawingMode, this.usePencil, e);
 
       if (this.isDrawingMode) {
         if (e.type === 'touchstart' && e.touches.length > 1)  {
