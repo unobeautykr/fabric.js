@@ -1,4 +1,4 @@
-console.log("version5");
+console.log("version6");
 (function() {
 
   var addListener = fabric.util.addListener,
@@ -773,13 +773,16 @@ console.log("version5");
     },
 
     _isStylus: function(e) {
-      for (var touch in e.changedTouches) {
-        if (touch.touchType && touch.touchType === stylus) {
+      for (var i = 0; i < e.changedTouches.length; i++) {
+        var touch = e.changedTouches[i];
+        if (touch.touchType && touch.touchType === 'stylus') {
           return true;
         }
 
         //fallback to check radius
-        if (touch.radiusX === 0) return true;
+        if (touch.radiusX === 0) {
+          return true;
+        }
       }
 
       return false;
