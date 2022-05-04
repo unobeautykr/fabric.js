@@ -1,4 +1,3 @@
-console.log("version6");
 (function() {
 
   var addListener = fabric.util.addListener,
@@ -659,8 +658,6 @@ console.log("version6");
         return;
       }
 
-      console.log(this.isDrawingMode, this.usePencil, e);
-
       if (this.isDrawingMode) {
         if (!this.usePencil || this._isStylus(e)) {
           if (e.type === 'touchstart' && e.touches.length > 1)  {
@@ -802,7 +799,6 @@ console.log("version6");
       this._cacheTransformEventData(e);
       var target, pointer;
 
-      console.log(this.isDrawingMode, this.usePencil, e);
       if (this.isDrawingMode) {
         if (!this.usePencil || this._isStylus(e)) {
           // if (e.type === 'touchmove' && e.touches.length > 1)  {
