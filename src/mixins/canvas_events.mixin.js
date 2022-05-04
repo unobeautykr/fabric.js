@@ -664,6 +664,8 @@
             this._finishDrawing(e);
           }
 
+          console.log(this.usePencil, e);
+
           if (this.usePencil) {
             console.log(e);
           }
