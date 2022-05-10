@@ -770,6 +770,10 @@
     },
 
     _isStylus: function(e) {
+      if (!e.changedTouches) {
+        return false;
+      }
+
       for (var i = 0; i < e.changedTouches.length; i++) {
         var touch = e.changedTouches[i];
         if (touch.touchType && touch.touchType === 'stylus') {
