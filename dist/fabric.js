@@ -5112,6 +5112,7 @@ fabric.CommonMethods = {
         ? setOpacity(element, styles.match(/opacity:\s*(\d?\.?\d*)/)[1])
         : element;
     }
+    var targetStyle = {};
     for (var property in styles) {
       if (property === 'opacity') {
         setOpacity(element, styles[property]);
@@ -5120,9 +5121,10 @@ fabric.CommonMethods = {
         var normalizedProperty = (property === 'float' || property === 'cssFloat')
           ? (typeof elementStyle.styleFloat === 'undefined' ? 'cssFloat' : 'styleFloat')
           : property;
-        elementStyle[normalizedProperty] = styles[property];
+        targetStyle[normalizedProperty] = styles[property];
       }
     }
+    element.style = targetStyle;
     return element;
   }
 

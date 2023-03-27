@@ -18,7 +18,7 @@
         ? setOpacity(element, styles.match(/opacity:\s*(\d?\.?\d*)/)[1])
         : element;
     }
-    let targetStyle = {}
+    var targetStyle = {};
     for (var property in styles) {
       if (property === 'opacity') {
         setOpacity(element, styles[property]);
