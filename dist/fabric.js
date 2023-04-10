@@ -16091,8 +16091,10 @@ fabric.PatternBrush = fabric.util.createClass(fabric.PencilBrush, /** @lends fab
       return dataurl;
     },
 
-    toBlob: function (callback) {
-      var canvasEl = this.toCanvasElement(1, {});
+    toBlob: function (callback, options) {
+      options || (options = { });
+      var multiplier = (options.multiplier || 1) * (options.enableRetinaScaling ? this.getRetinaScaling() : 1);
+      var canvasEl = this.toCanvasElement(multiplier, options);
       canvasEl.toBlob(function(blob) {
         callback(blob);
         canvasEl.width = 0;
