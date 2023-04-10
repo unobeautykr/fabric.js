@@ -16091,6 +16091,15 @@ fabric.PatternBrush = fabric.util.createClass(fabric.PencilBrush, /** @lends fab
       return dataurl;
     },
 
+    toBlob: function (callback) {
+      var canvasEl = this.toCanvasElement(1, {});
+      canvasEl.toBlob(function(blob) {
+        callback(blob);
+        canvasEl.width = 0;
+        canvasEl.height = 0;
+      });
+    },
+
     /**
      * Create a new HTMLCanvas element painted with the current canvas content.
      * No need to resize the actual one or repaint it.
