@@ -40,7 +40,10 @@
           quality = options.quality || 1,
           multiplier = (options.multiplier || 1) * (options.enableRetinaScaling ? this.getRetinaScaling() : 1),
           canvasEl = this.toCanvasElement(multiplier, options);
-      return fabric.util.toDataURL(canvasEl, format, quality);
+      var dataurl = fabric.util.toDataURL(canvasEl, format, quality);
+      canvasEl.width = 0;
+      canvasEl.height = 0;
+      return dataurl;
     },
 
     /**
